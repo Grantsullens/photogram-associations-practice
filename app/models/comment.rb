@@ -12,6 +12,12 @@
 
 class Comment < ApplicationRecord
   validates(:commenter, { :presence => true })
+  belongs_to :commenter, 
+    class_name: "User", 
+    foreign_key: "author_id"
+
+  belongs_to :photo,
+    counter_cache: true
 
   # Association accessor methods to define:
   

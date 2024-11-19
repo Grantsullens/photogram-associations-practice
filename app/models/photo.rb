@@ -15,6 +15,21 @@
 class Photo < ApplicationRecord
   validates(:poster, { :presence => true })
 
+  belongs_to :poster,
+    class_name: "User",
+    foreign_key: "owner_id"
+
+  has_many :comments,
+    dependent: :destroy
+
+  has_many :likes,
+    dependent: :destroy
+
+  # Indirect association
+  has_many :fans,
+    through: :likes,
+    source: :fan
+
   # Association accessor methods to define:
   
   ## Direct associations

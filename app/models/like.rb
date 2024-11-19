@@ -16,6 +16,12 @@ class Like < ApplicationRecord
     :uniqueness => { :scope => [:fan_id] }
   })
 
+  belongs_to :fan,
+    class_name: "User"
+
+  belongs_to :photo,
+    counter_cache: true
+
   # Association accessor methods to define:
   
   ## Direct associations
